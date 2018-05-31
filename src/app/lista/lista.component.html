@@ -1,0 +1,52 @@
+<div class="container">
+  <div style="margin-top:20px;">
+    <button mat-raised-button color="primary" (click)="cadastrar()">Cadastrar</button>
+  </div>
+  <table class="table" style="margin-top:20px;">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Primeiro Nome</th>
+        <th scope="col">Ultimo Nome</th>
+        <th scope="col">Email</th>
+        <th scope="col">Ativo</th>
+        <th scope="col">Ocupado</th>
+        <th scope="col">Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let medico of medicos; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{medico.nome}}</td>
+        <td>{{medico.ultimo_nome}}</td>
+        <td>{{medico.email}}</td>
+        <td>
+          <div *ngIf="medico.is_ativo == true; else inativo">
+            <mat-icon aria-label="Visualizar Médico">check_box</mat-icon>
+          </div>
+          <ng-template #inativo>
+            <mat-icon aria-label="Visualizar Médico">check_box_outline_blank</mat-icon>
+          </ng-template>
+        </td>
+        <td>
+          <div *ngIf="medico.status == 'Disponivel'; else ocupado">
+            <mat-icon aria-label="Visualizar Médico">radio_button_unchecked</mat-icon>
+          </div>
+          <ng-template #ocupado>
+            <mat-icon aria-label="Visualizar Médico">radio_button_checked</mat-icon>
+          </ng-template>
+        </td>
+        <td>
+          <button mat-icon-button>
+            <mat-icon aria-label="Visualizar Médico">face</mat-icon>
+          </button>
+
+          <button mat-icon-button>
+            <mat-icon aria-label="Editar Médico">edit</mat-icon>
+          </button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
